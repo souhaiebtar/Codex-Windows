@@ -50,13 +50,13 @@
       <Component Id="AppPathCmp" Guid="*">
         <RegistryValue
           Root="HKCU"
-          Key="Software\Microsoft\Windows\CurrentVersion\App Paths\codexd.exe"
-          Value="[INSTALLFOLDER]codexd.exe"
+          Key="Software\Microsoft\Windows\CurrentVersion\App Paths\CodexDesktop.exe"
+          Value="[INSTALLFOLDER]CodexDesktop.exe"
           Type="string"
           KeyPath="yes" />
         <RegistryValue
           Root="HKCU"
-          Key="Software\Microsoft\Windows\CurrentVersion\App Paths\codexd.exe"
+          Key="Software\Microsoft\Windows\CurrentVersion\App Paths\CodexDesktop.exe"
           Name="Path"
           Value="[INSTALLFOLDER]"
           Type="string" />
@@ -70,7 +70,7 @@
         <Shortcut
           Id="CodexdStartMenu"
           Name="codex-desktop"
-          Target="[INSTALLFOLDER]codexd.exe"
+          Target="[INSTALLFOLDER]CodexDesktop.exe"
           WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="RemoveProgramMenuDir" Directory="ProgramMenuDir" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\codex-desktop" Name="installed" Type="integer" Value="1" KeyPath="yes" />

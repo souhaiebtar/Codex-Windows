@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyName>codexd</AssemblyName>
+    <AssemblyName>CodexDesktop</AssemblyName>
     <ApplicationIcon>codex.ico</ApplicationIcon>
   </PropertyGroup>
 </Project>

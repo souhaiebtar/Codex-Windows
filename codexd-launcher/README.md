@@ -1,4 +1,4 @@
-# codexd.exe (no-terminal launcher)
+# CodexDesktop.exe (no-terminal launcher)
 
 Build a Windows GUI executable that launches the already-extracted Codex desktop app without attaching to a terminal.
 
@@ -10,21 +10,21 @@ dotnet publish .\codexd-launcher\CodexdLauncher.csproj -c Release -r win-x64 -p:
 
 Output:
 
-`codexd-launcher\bin\Release\net8.0-windows\win-x64\publish\codexd.exe`
+`codexd-launcher\bin\Release\net8.0-windows\win-x64\publish\CodexDesktop.exe`
 
 ## Usage
 
-- Default work dir: `work` folder next to `codexd.exe`
+- Default work dir: `work` folder next to `CodexDesktop.exe`
 - Override:
 
 ```powershell
-codexd.exe --workdir C:\path\to\work
+CodexDesktop.exe --workdir C:\path\to\work
 ```
 
 Optional (if auto-detection fails):
 
 ```powershell
-codexd.exe --codex-cli-path C:\path\to\codex.exe
+CodexDesktop.exe --codex-cli-path C:\path\to\codex.exe
 ```
 
 To force PowerShell 7 as the in-app terminal on Windows, set:

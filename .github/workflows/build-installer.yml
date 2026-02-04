@@ -40,4 +40,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: installer/out/codexd-setup.exe
+          files: installer/out/CodexDesktop-setup.exe

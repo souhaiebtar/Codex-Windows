@@ -27,7 +27,7 @@ if ($Reuse) { $runArgs.Reuse = $true }
 if ($NoLaunch) { $runArgs.NoLaunch = $true }
 & $runScript @runArgs
 
-Write-Host "Building codexd.exe + setup.exe..." -ForegroundColor Cyan
+Write-Host "Building CodexDesktop.exe + setup.exe..." -ForegroundColor Cyan
 $buildArgs = @{
   Configuration = $Configuration
   Runtime = $Runtime
@@ -41,12 +41,14 @@ Write-Host "Removing MSI artifacts..." -ForegroundColor Cyan
 $msiArtifacts = @(
   (Join-Path $OutDir "codexd.msi"),
   (Join-Path $OutDir "codexd.wixpdb"),
+  (Join-Path $OutDir "CodexDesktop.msi"),
+  (Join-Path $OutDir "CodexDesktop.wixpdb"),
   (Join-Path $OutDir "WorkFiles.wxs")
 )
 $msiArtifacts += (Get-ChildItem -Path $OutDir -Filter "cab*.cab" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })
 foreach ($p in $msiArtifacts) { Remove-Item -Force -ErrorAction SilentlyContinue $p }
 
-$setupExe = Join-Path $OutDir "codexd-setup.exe"
+$setupExe = Join-Path $OutDir "CodexDesktop-setup.exe"
 if (-not (Test-Path $setupExe -PathType Leaf)) {
   throw "Expected setup.exe not found: $setupExe"
 }

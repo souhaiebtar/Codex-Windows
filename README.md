@@ -52,7 +52,7 @@ The script will:
 
 ![Visual Studio Installer: Spectre-mitigated libs](screenshot/spectre_required.png)
 
-One-shot build (runs `run.ps1`, then produces `installer\out\codexd-setup.exe`):
+One-shot build (runs `run.ps1`, then produces `installer\out\CodexDesktop-setup.exe`):
 
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1
@@ -66,7 +66,7 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1 -Reu
 
 Output:
 
-- `installer\out\codexd-setup.exe`
+- `installer\out\CodexDesktop-setup.exe`
 
 ## Notes
 - This is not an official OpenAI project.

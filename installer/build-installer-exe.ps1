@@ -18,7 +18,7 @@ $ProgressPreference = "SilentlyContinue"
   -WorkRoot $WorkRoot `
   -CodexCliExe $CodexCliExe
 
-$msiPath = Join-Path $OutDir "codexd.msi"
+$msiPath = Join-Path $OutDir "CodexDesktop.msi"
 if (-not (Test-Path -Path $msiPath -PathType Leaf)) {
   throw "MSI not found: $msiPath"
 }
@@ -33,7 +33,7 @@ if (-not (Test-Path -Path $wix -PathType Leaf)) {
 & $wix extension add -g WixToolset.BootstrapperApplications.wixext/6.0.2 | Out-Null
 
 # 4) Build the setup.exe bundle.
-$setupOut = Join-Path $OutDir "codexd-setup.exe"
+$setupOut = Join-Path $OutDir "CodexDesktop-setup.exe"
 Remove-Item -Force -ErrorAction SilentlyContinue $setupOut
 
 $wixArch = if ($Runtime -eq "win-arm64") { "arm64" } else { "x64" }

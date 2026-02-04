@@ -2,7 +2,7 @@
 
 This builds a per-user MSI that installs:
 
-- `codexd.exe` (the no-terminal launcher)
+- `CodexDesktop.exe` (the no-terminal launcher)
 - `cli\codex.exe` (Codex CLI binary used by the desktop app)
 - `work\app` + `work\native-builds` (the extracted desktop app + Electron/native deps)
 
@@ -10,7 +10,7 @@ Install location (per-user):
 
 - `%LOCALAPPDATA%\codexd`
 
-`codexd.exe` defaults to using the `work` folder next to it, so the installed app runs without extra flags.
+`CodexDesktop.exe` defaults to using the `work` folder next to it, so the installed app runs without extra flags.
 
 ## Build
 
@@ -22,7 +22,7 @@ Prereqs:
 
 Build:
 
-One-shot (run `run.ps1` to populate `work/`, then build `codexd-setup.exe` only):
+One-shot (run `run.ps1` to populate `work/`, then build `CodexDesktop-setup.exe` only):
 
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1
@@ -55,11 +55,11 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\installer\build-installer.ps1 -C
 
 Output:
 
-- `installer\out\codexd.msi`
-- `installer\out\codexd-setup.exe` (single-file installer)
+- `installer\out\CodexDesktop.msi`
+- `installer\out\CodexDesktop-setup.exe` (single-file installer)
 
 ## Install / Run
 
-- Double-click `installer\out\codexd-setup.exe` to install (per-user, no admin).
-- You can also use `installer\out\codexd.msi` directly if preferred.
-- After install, run `codexd` from the Start Menu, or via Win+R `codexd` (it registers an App Paths entry).
+- Double-click `installer\out\CodexDesktop-setup.exe` to install (per-user, no admin).
+- You can also use `installer\out\CodexDesktop.msi` directly if preferred.
+- After install, run `codex-desktop` from the Start Menu, or via Win+R `CodexDesktop` (it registers an App Paths entry).

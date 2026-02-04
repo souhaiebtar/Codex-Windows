@@ -32,7 +32,7 @@ static class Program
             }
 
             if (!Directory.Exists(workDir))
-                throw new DirectoryNotFoundException($"CodexDesktopPath not found: {workDir}\n\nChange it with: codexd.exe --workdir <path>\n(or create the directory).");
+                throw new DirectoryNotFoundException($"CodexDesktopPath not found: {workDir}\n\nChange it with: CodexDesktop.exe --workdir <path>\n(or create the directory).");
 
             var appDir = Path.Combine(workDir, "app");
             var nativeDir = Path.Combine(workDir, "native-builds");
@@ -94,7 +94,7 @@ static class Program
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "codexd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, "Codex Desktop", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return 1;
         }
     }

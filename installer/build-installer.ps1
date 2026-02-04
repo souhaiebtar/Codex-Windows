@@ -17,19 +17,21 @@ New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 
 $oldArtifacts = @(
   (Join-Path $OutDir "codexd.msi"),
-  (Join-Path $OutDir "codexd.wixpdb")
+  (Join-Path $OutDir "codexd.wixpdb"),
+  (Join-Path $OutDir "CodexDesktop.msi"),
+  (Join-Path $OutDir "CodexDesktop.wixpdb")
 )
 $oldArtifacts += (Get-ChildItem -Path $OutDir -Filter "cab*.cab" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })
 foreach ($p in $oldArtifacts) { Remove-Item -Force -ErrorAction SilentlyContinue $p }
 
-Write-Host "Publishing codexd.exe..." -ForegroundColor Cyan
+Write-Host "Publishing CodexDesktop.exe..." -ForegroundColor Cyan
 $publishDir = Join-Path $OutDir "publish"
 Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $publishDir
 dotnet publish (Join-Path $repoRoot "codexd-launcher\CodexdLauncher.csproj") -c $Configuration -r $Runtime -p:PublishSingleFile=true -p:SelfContained=true -p:PublishDir=$publishDir | Out-Null
 
-$codexdExe = Join-Path $publishDir "codexd.exe"
+$codexdExe = Join-Path $publishDir "CodexDesktop.exe"
 if (-not (Test-Path -Path $codexdExe -PathType Leaf)) {
-  throw "codexd.exe not found after publish: $codexdExe"
+  throw "CodexDesktop.exe not found after publish: $codexdExe"
 }
 
 function Resolve-CodexCliExe([string]$Explicit) {
@@ -82,7 +84,7 @@ if (-not (Test-Path $wix)) {
 if (-not (Test-Path $wix)) { throw "wix.exe not found: $wix" }
 
 Write-Host "Building MSI..." -ForegroundColor Cyan
-$msiOut = Join-Path $OutDir "codexd.msi"
+$msiOut = Join-Path $OutDir "CodexDesktop.msi"
 $wixArch = if ($Runtime -eq "win-arm64") { "arm64" } else { "x64" }
 & $wix build `
   (Join-Path $PSScriptRoot "CodexdInstaller.wxs") `
