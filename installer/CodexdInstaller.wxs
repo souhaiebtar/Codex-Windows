@@ -17,7 +17,7 @@
     </StandardDirectory>
 
     <StandardDirectory Id="ProgramMenuFolder">
-      <Directory Id="ProgramMenuDir" Name="codexd" />
+      <Directory Id="ProgramMenuDir" Name="codex-desktop" />
     </StandardDirectory>
 
     <Feature Id="MainFeature" Title="codexd" Level="1">
@@ -69,11 +69,11 @@
       <Component Id="ShortcutCmp" Guid="*">
         <Shortcut
           Id="CodexdStartMenu"
-          Name="codexd"
+          Name="codex-desktop"
           Target="[INSTALLFOLDER]codexd.exe"
           WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="RemoveProgramMenuDir" Directory="ProgramMenuDir" On="uninstall" />
-        <RegistryValue Root="HKCU" Key="Software\codexd" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        <RegistryValue Root="HKCU" Key="Software\codex-desktop" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </DirectoryRef>
   </Fragment>

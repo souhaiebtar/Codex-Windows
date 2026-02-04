@@ -6,6 +6,6 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>codexd</AssemblyName>
+    <ApplicationIcon>codex.ico</ApplicationIcon>
   </PropertyGroup>
 </Project>
-

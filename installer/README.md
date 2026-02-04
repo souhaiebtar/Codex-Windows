@@ -28,6 +28,12 @@ One-shot (run `run.ps1` to populate `work/`, then build `codexd-setup.exe` only)
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1
 ```
 
+Skip DMG re-extraction if `work/` is already populated:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1 -Reuse
+```
+
 
 for `.exe`
 
