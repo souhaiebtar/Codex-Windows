@@ -311,9 +311,11 @@ foreach ($f in $ptyFiles) {
 
 if (-not $NoLaunch) {
   Write-Header "Resolving Codex CLI"
-  $cli = (Get-ChildItem -Path (npm config get prefix) -Recurse -Filter "codex.exe" -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match "x86_64" }).FullName
+  $npmPrefix = (npm config get prefix 2>$null).ToString().Trim()
+  $cliMatch = Get-ChildItem -Path $npmPrefix -Recurse -Filter "codex.exe" -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match "x86_64" } | Select-Object -First 1
+  $cli = if ($cliMatch) { $cliMatch.FullName } else { $null }
   if (-not $cli) {
-    throw "codex.exe not found."
+    throw "Install Codex CLI, then try again."
   }
 
   Write-Header "Launching Codex"

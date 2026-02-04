@@ -85,6 +85,9 @@ static class Program
             psi.Environment["NODE_ENV"] = "production";
             psi.Environment["CODEX_CLI_PATH"] = cli;
             psi.Environment["PWD"] = appDir;
+            var pwsh = ResolvePwshPath();
+            if (!string.IsNullOrWhiteSpace(pwsh))
+                psi.Environment["COMSPEC"] = pwsh;
 
             Process.Start(psi);
             return 0;
@@ -196,6 +199,44 @@ static class Program
                     }
                 }
             }
+        }
+
+        return null;
+    }
+
+    private static string? ResolvePwshPath()
+    {
+        var envOverride = Environment.GetEnvironmentVariable("CODEX_PWSH_PATH");
+        if (!string.IsNullOrWhiteSpace(envOverride) && File.Exists(envOverride))
+            return Path.GetFullPath(envOverride);
+
+        var candidates = new List<string>();
+        try
+        {
+            candidates.AddRange(RunWhere("pwsh.exe"));
+        }
+        catch
+        {
+        }
+
+        var pf = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        if (!string.IsNullOrWhiteSpace(pf))
+        {
+            candidates.Add(Path.Combine(pf, "PowerShell", "7", "pwsh.exe"));
+            candidates.Add(Path.Combine(pf, "PowerShell", "7-preview", "pwsh.exe"));
+        }
+
+        var pf86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+        if (!string.IsNullOrWhiteSpace(pf86))
+        {
+            candidates.Add(Path.Combine(pf86, "PowerShell", "7", "pwsh.exe"));
+            candidates.Add(Path.Combine(pf86, "PowerShell", "7-preview", "pwsh.exe"));
+        }
+
+        foreach (var c in candidates)
+        {
+            if (string.IsNullOrWhiteSpace(c)) continue;
+            if (File.Exists(c)) return Path.GetFullPath(c);
         }
 
         return null;

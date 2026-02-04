@@ -27,4 +27,10 @@ Optional (if auto-detection fails):
 codexd.exe --codex-cli-path C:\path\to\codex.exe
 ```
 
+To force PowerShell 7 as the in-app terminal on Windows, set:
+
+```powershell
+$env:CODEX_PWSH_PATH = "C:\Program Files\PowerShell\7\pwsh.exe"
+```
+
 If something is misconfigured, the launcher shows a dialog (since there is no console).

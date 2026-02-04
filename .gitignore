@@ -1,5 +1,6 @@
 /work/
 /native-builds/
+/.tools/
 
 /app/
 /electron/
@@ -8,3 +9,16 @@
 *.log
 
 *.dmg
+
+/installer/out/
+.tools/.store
+
+/codexd-launcher/bin/
+/codexd-launcher/obj/
+/installer/out/.tools/
+/installer/out/publish/
+/installer/out/*.cab
+/installer/out/*.wixpdb
+/installer/out/WorkFiles.wxs
+/installer/out/*.msi
+/installer/out/*.exe

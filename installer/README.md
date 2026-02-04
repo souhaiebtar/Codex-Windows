@@ -22,6 +22,21 @@ Prereqs:
 
 Build:
 
+One-shot (run `run.ps1` to populate `work/`, then build `codexd-setup.exe` only):
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1
+```
+
+
+for `.exe`
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\installer\build-installer-exe.ps1 -SingleFileInstaller
+```
+
+for `MSI`
+
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\installer\build-installer.ps1
 ```
@@ -35,9 +50,10 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\installer\build-installer.ps1 -C
 Output:
 
 - `installer\out\codexd.msi`
+- `installer\out\codexd-setup.exe` (single-file installer)
 
 ## Install / Run
 
-- Double-click `installer\out\codexd.msi` to install.
+- Double-click `installer\out\codexd-setup.exe` to install (per-user, no admin).
+- You can also use `installer\out\codexd.msi` directly if preferred.
 - After install, run `codexd` from the Start Menu, or via Win+R `codexd` (it registers an App Paths entry).
-
