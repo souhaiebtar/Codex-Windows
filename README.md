@@ -7,7 +7,13 @@ This repository provides a **Windows-only runner** that extracts the macOS Codex
 - Node.js
 - 7-Zip (`7z` in PATH)
 - If 7-Zip is not installed, the runner will try `winget` or download a portable copy
-- Codex CLI installed (`npm i -g @openai/codex`)
+- Codex CLI installed (`npm i -g @openai/codex`, using a node package manager (in my case fnm) can cause issues regarding detecting codex-cli)
+- git (for codex desktop)
+
+## Visual Studio Installer (Required Libs)
+If your build fails due to missing Spectre-mitigated libraries, install the option shown below in the Visual Studio Installer.
+
+![Visual Studio Installer: Spectre-mitigated libs](screenshot/spectre_required.png)
 
 ## Quick Start
 1. Place your DMG in the repo root (default name `Codex.dmg`).
@@ -36,6 +42,16 @@ The script will:
 - Launch Codex
 
 ## Build Installer (.exe)
+
+### Requirements
+- WiX Toolset (for MSI)
+- NSIS (for EXE)
+- Desktop development with C++ (
+- If your build fails due to missing Spectre-mitigated libraries, install the option shown below in the Visual Studio Installer.
+- .Net sdk 8
+
+![Visual Studio Installer: Spectre-mitigated libs](screenshot/spectre_required.png)
+
 One-shot build (runs `run.ps1`, then produces `installer\out\codexd-setup.exe`):
 
 ```powershell

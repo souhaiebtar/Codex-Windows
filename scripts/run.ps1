@@ -149,7 +149,20 @@ if (-not $DmgPath) {
     if ($cand) {
       $DmgPath = $cand.FullName
     } else {
-      throw "No DMG found."
+      $downloadUrl = "https://persistent.oaistatic.com/codex-app-prod/Codex.dmg"
+      Write-Header "Codex.dmg not found; downloading"
+      try {
+        Invoke-WebRequest -Uri $downloadUrl -OutFile $default
+        if (Test-Path $default) {
+          $DmgPath = $default
+        } else {
+          throw "Download did not produce file."
+        }
+      } catch {
+        Write-Host "Failed to download Codex.dmg from $downloadUrl." -ForegroundColor Red
+        Write-Host "Place Codex.dmg in the repo root and re-run." -ForegroundColor Red
+        exit 1
+      }
     }
   }
 }
