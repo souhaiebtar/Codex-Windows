@@ -4,6 +4,7 @@ param(
   [switch]$Reuse,
   [bool]$NoLaunch = $true,
   [string]$CodexCliExe,
+  [switch]$AllowMissingCodexCli,
   [string]$Configuration = "Release",
   [ValidateSet("win-x64","win-arm64")][string]$Runtime = "win-x64",
   [string]$OutDir = (Join-Path $PSScriptRoot "..\\installer\\out")
@@ -35,6 +36,10 @@ $buildArgs = @{
   WorkRoot = $WorkDir
 }
 if ($CodexCliExe) { $buildArgs.CodexCliExe = $CodexCliExe }
+if ($AllowMissingCodexCli) { $buildArgs.AllowMissingCodexCli = $true }
+if ($env:ALLOW_MISSING_CODEX_CLI -eq "1" -or $env:CODEX_ALLOW_MISSING_CLI -eq "1") {
+  $buildArgs.AllowMissingCodexCli = $true
+}
 & $buildScript @buildArgs
 
 Write-Host "Removing MSI artifacts..." -ForegroundColor Cyan

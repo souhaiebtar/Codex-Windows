@@ -3,7 +3,8 @@ param(
   [ValidateSet("win-x64","win-arm64")][string]$Runtime = "win-x64",
   [string]$OutDir = (Join-Path $PSScriptRoot "out"),
   [string]$WorkRoot = (Join-Path $PSScriptRoot "..\work"),
-  [string]$CodexCliExe
+  [string]$CodexCliExe,
+  [switch]$AllowMissingCodexCli
 )
 
 Set-StrictMode -Version Latest
@@ -65,9 +66,20 @@ function Resolve-CodexCliExe([string]$Explicit) {
 }
 
 Write-Host "Resolving codex.exe (CLI)..." -ForegroundColor Cyan
+$allowMissing = $AllowMissingCodexCli -or ($env:ALLOW_MISSING_CODEX_CLI -eq "1") -or ($env:CODEX_ALLOW_MISSING_CLI -eq "1")
 $codexCliAbs = Resolve-CodexCliExe $CodexCliExe
 if (-not $codexCliAbs) {
-  throw "codex.exe not found. Pass -CodexCliExe <path>, set CODEX_CLI_PATH, or ensure codex.exe is discoverable in PATH (not the npm shim)."
+  if ($allowMissing) {
+    Write-Host "codex.exe not found; continuing with placeholder (AllowMissingCodexCli)." -ForegroundColor Yellow
+    $placeholderDir = Join-Path $OutDir "codex-cli-placeholder"
+    New-Item -ItemType Directory -Force -Path $placeholderDir | Out-Null
+    $codexCliAbs = Join-Path $placeholderDir "codex.exe"
+    if (-not (Test-Path $codexCliAbs)) {
+      Set-Content -Path $codexCliAbs -Value "" -NoNewline
+    }
+  } else {
+    throw "codex.exe not found. Pass -CodexCliExe <path>, set CODEX_CLI_PATH, or ensure codex.exe is discoverable in PATH (not the npm shim)."
+  }
 }
 
 Write-Host "Generating WiX payload list..." -ForegroundColor Cyan

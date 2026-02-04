@@ -3,7 +3,8 @@ param(
   [ValidateSet("win-x64","win-arm64")][string]$Runtime = "win-x64",
   [string]$OutDir = (Join-Path $PSScriptRoot "out"),
   [string]$WorkRoot = (Join-Path $PSScriptRoot "..\work"),
-  [string]$CodexCliExe
+  [string]$CodexCliExe,
+  [switch]$AllowMissingCodexCli
 )
 
 Set-StrictMode -Version Latest
@@ -16,7 +17,8 @@ $ProgressPreference = "SilentlyContinue"
   -Runtime $Runtime `
   -OutDir $OutDir `
   -WorkRoot $WorkRoot `
-  -CodexCliExe $CodexCliExe
+  -CodexCliExe $CodexCliExe `
+  -AllowMissingCodexCli:$AllowMissingCodexCli
 
 $msiPath = Join-Path $OutDir "CodexDesktop.msi"
 if (-not (Test-Path -Path $msiPath -PathType Leaf)) {

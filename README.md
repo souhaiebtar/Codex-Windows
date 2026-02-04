@@ -64,6 +64,12 @@ Skip re-extraction if `work/` is already populated:
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1 -Reuse
 ```
 
+Allow building the installer without a real Codex CLI present (CI-only, uses a placeholder):
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1 -AllowMissingCodexCli
+```
+
 Output:
 
 - `installer\out\CodexDesktop-setup.exe`
