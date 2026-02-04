@@ -203,6 +203,13 @@ if (-not $Reuse) {
   if (Test-Path $unpacked) {
     & robocopy $unpacked $appDir /E /NFL /NDL /NJH /NJS /NC /NS | Out-Null
   }
+
+  Write-Header "Cleaning up extract artifacts"
+  foreach ($p in @($extractedDir, $electronDir, (Join-Path $WorkDir "tools"))) {
+    if ($p -and (Test-Path $p)) {
+      Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $p
+    }
+  }
 }
 
 Write-Header "Patching preload"
