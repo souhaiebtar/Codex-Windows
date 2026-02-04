@@ -30,6 +30,9 @@ jobs:
         shell: pwsh
         run: |
           winget install --id 7zip.7zip -e --source winget --accept-package-agreements --accept-source-agreements --silent
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "winget returned exit code $LASTEXITCODE (often means already installed). Continuing."
+          }
 
       - name: Install Codex CLI
         shell: pwsh
