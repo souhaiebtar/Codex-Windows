@@ -1,6 +1,6 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Package
-    Name="codexd"
+    Name="Codex Desktop"
     Manufacturer="tunknown"
     Version="1.0.0"
     UpgradeCode="6f2c2b9a-4c3b-43a4-9c07-0b22b7aa1a18"
@@ -20,7 +20,7 @@
       <Directory Id="ProgramMenuDir" Name="codex-desktop" />
     </StandardDirectory>
 
-    <Feature Id="MainFeature" Title="codexd" Level="1">
+    <Feature Id="MainFeature" Title="Codex Desktop" Level="1">
       <ComponentRef Id="CodexdExeCmp" />
       <ComponentRef Id="CodexCliCmp" />
       <ComponentRef Id="AppPathCmp" />

@@ -1,16 +1,18 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
      xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
   <Bundle
-    Name="codexd"
+    Name="Codex Desktop"
     Manufacturer="tunknown"
     Version="1.0.0"
     UpgradeCode="f1d8c5e7-6bb4-4ff4-b5c2-1558d28900a6"
-    DisableModify="yes">
+    DisableModify="yes"
+    IconSourceFile="$(var.BundleIcon)">
 
     <BootstrapperApplication>
       <bal:WixStandardBootstrapperApplication
         Theme="rtfLicense"
         LicenseFile="$(var.BundleLicense)"
+        LogoFile="$(var.BundleLogo)"
         SuppressOptionsUI="yes"
         SuppressRepair="yes" />
     </BootstrapperApplication>

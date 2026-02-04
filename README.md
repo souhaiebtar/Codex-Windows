@@ -35,6 +35,23 @@ The script will:
 - Auto-detect `codex.exe`
 - Launch Codex
 
+## Build Installer (.exe)
+One-shot build (runs `run.ps1`, then produces `installer\out\codexd-setup.exe`):
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1
+```
+
+Skip re-extraction if `work/` is already populated:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-setup-exe.ps1 -Reuse
+```
+
+Output:
+
+- `installer\out\codexd-setup.exe`
+
 ## Notes
 - This is not an official OpenAI project.
 - Do not redistribute OpenAI app binaries or DMG files.
