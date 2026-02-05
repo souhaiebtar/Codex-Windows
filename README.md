@@ -41,6 +41,11 @@ The script will:
 - Auto-detect `codex.exe`
 - Launch Codex
 
+## Screenshots
+
+![Codex Desktop on Windows](screenshot/codex%20Desktop%20Windows.png)
+![Codex Desktop Installer](screenshot/codex%20desktop%20installer.png)
+
 ## Build Installer (.exe)
 
 ### Requirements
