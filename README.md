@@ -84,5 +84,12 @@ Output:
 - Do not redistribute OpenAI app binaries or DMG files.
 - The Electron version is read from the app's `package.json` to keep ABI compatibility.
 
+## Cleaning Up
+If the project folder becomes too large, you can clear all build artifacts and temporary files with:
+
+```powershell
+Remove-Item -Recurse -Force work, installer\out, codexd-launcher\bin, codexd-launcher\obj -ErrorAction SilentlyContinue
+```
+
 ## License
 MIT (For the scripts only)
